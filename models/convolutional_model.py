@@ -4,7 +4,8 @@ import tensorflow as tf
 class ConvModel:
 
     def __init__(self, resolution, channels):
-        self.input_placeholder = tf.placeholder(tf.float32, shape=[None] + resolution + [channels])
+        self.input_placeholder = tf.placeholder(tf.float32, shape=[None] + resolution + [channels],
+                                                name='image')
 
         x = tf.layers.conv2d(inputs=self.input_placeholder,
                              filters=32,

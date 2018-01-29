@@ -43,7 +43,8 @@ with tf.Session() as sess:
 
         print('Average epoch loss: %f\n' % (total_epoch_loss / n_batches))
 
-    tf.add_to_collection('model', model.predictions)      # Specify the graph nodes that we want to use later
+    digit_probabilities = tf.nn.softmax(model.predictions, name='prediction')
+    tf.add_to_collection('model', digit_probabilities)          # Specify the graph nodes that we want to use later
     tf.add_to_collection('model_inputs', model.input_placeholder)
-    saver.save(sess, './saved_models/model')                # Save the entire graph and all Variables
+    saver.save(sess, './saved_models/model.ckpt')               # Save the entire graph and all Variables
 

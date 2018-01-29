@@ -19,7 +19,7 @@ import math
 # Edges: Built in (or custom) operations
 
 a = tf.constant(1, dtype=tf.float32, shape=[2, 4, 3])   # Explicitly defined Tensor
-b = tf.constant(2, dtype=tf.float32, shape=[2, 4, 3])   # Explicitly defined Tensor
+b = tf.constant(2, dtype=tf.float32, shape=[4, 3])   # Explicitly defined Tensor
 
 c = tf.add(a, b)                                        # Tensor resulting from operation
 
@@ -116,7 +116,6 @@ for epoch in range(1, epochs+1):
     for i in range(0, len(inputs), batch_size):
         input_batch = inputs[i:i+batch_size]
         label_batch = labels[i:i+batch_size]
-        label_batch = [[l] for l in label_batch]    # Our model is expecting label to be shape [batch, 1], not [batch]
 
         _, l = sess.run([update, loss],
                         feed_dict={input_placeholder: input_batch,
